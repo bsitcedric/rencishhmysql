@@ -75,4 +75,25 @@ Examples
             /*If you want to display data to datagrid and your query has no parameters*/
             Query query7 = new Query("SELECT * FROM tblstudents WHERE SID=6");
             dgvusers.DataSource = helper.getDataTable(query7);
+            
+                       /*
+            // if you want to return a MysqlDataReader
+            MySqlDataReader reader = helper.executeReader("SELECT * FROM tblstudents WHERE SID=6");
+
+            while (reader.Read())
+            {
+                MessageBox.Show(reader["firstname"].ToString());
+            }
+
+            // if you want to return a MysqlDataReader from a parametarize query
+            MySqlDataReader reader2 = helper.executeReader("SELECT * FROM tblstudents WHERE SID=6");
+
+            while (reader.Read())
+            {
+                MessageBox.Show(reader2["firstname"].ToString());
+            }
+
+            */
+            
+            
     
