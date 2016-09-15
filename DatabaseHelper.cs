@@ -66,6 +66,50 @@ namespace RenciModule //Just Change The NameSpace
         }
 
 
+        public MySqlDataReader executeReader(Query query)
+        {
+            using (PasswordConnectionInfo passConInfo = new PasswordConnectionInfo(serverInfo.Server, serverInfo.Port, serverInfo.Username, serverInfo.Password))
+            {
+                passConInfo.Timeout = TimeSpan.FromSeconds(serverInfo.Timeout);
+
+                using (var client = new SshClient(passConInfo))
+                {
+                    try
+                    {
+                        client.Connect();
+                        if (client.IsConnected)
+                        {
+                            var portFwld = new ForwardedPortLocal("127.0.0.1", 3306, "127.0.0.1", 3306);
+                            client.AddForwardedPort(portFwld);
+                            portFwld.Start();
+
+
+                            if (portFwld.IsStarted)
+                            {
+
+                                using (MySqlConnection con = new MySqlConnection(connectionInfo.getConnectionString()))
+                                {
+                                    con.Open();
+                                    using (MySqlCommand cmd = new MySqlCommand(query.getQuery(), con))
+                                    {
+                                        foreach (var pair in query.getParameters())
+                                        {
+                                            cmd.Parameters.AddWithValue(pair.Key, pair.Value);
+                                        }
+                                        return cmd.ExecuteReader();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                }
+            }
+            return null;
+        }
         public MySqlDataReader executeReader(string query)
         {
             using (PasswordConnectionInfo passConInfo = new PasswordConnectionInfo(serverInfo.Server, serverInfo.Port, serverInfo.Username, serverInfo.Password))
