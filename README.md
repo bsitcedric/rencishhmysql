@@ -10,12 +10,12 @@ Instructions
 
 2. Import the following
    // For Renci SSH
-      using Renci.SshNet;
-      using Renci.SshNet.Common;
-      using System.Net;
+   using Renci.SshNet;
+   using Renci.SshNet.Common;
+   using System.Net;
 
-    //Mysql <-- Please add reference to Mysql.Data.dll
-            using MySql.Data.MySqlClient;
+   //Mysql <-- Please add reference to Mysql.Data.dll
+   using MySql.Data.MySqlClient;
 
 3. Add the MysqlConnectionInfo, DatabaseHelper, Query, ServerConnectionInfo classes
 4. See examples
