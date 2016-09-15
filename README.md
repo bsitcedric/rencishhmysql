@@ -2,6 +2,9 @@
 Connecting C# Applications to Your webhost and execute sql commands via SSH
 Created by Cedric Coloma
 
+I Use NameCheap as my webhost. If you dont know how to buy a webhost. Refer to this tutorial
+http://icorrelate.xyz/2016/07/30/how-to-get-your-own-webhost-in-namecheap/
+
 Instructions
 1. Add Renci SHH.NET in your project! 
    >Tools > Nugget Package Manager > Package Manager Console > Paste this
